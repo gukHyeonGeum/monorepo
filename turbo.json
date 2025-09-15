@@ -1,0 +1,33 @@
+{
+  "$schema": "https://turborepo.com/schema.json",
+  "ui": "tui",
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$", ".env*"],
+      "outputs": ["dist/**", "build/**", ".next/**", "!.next/cache/**"]
+    },
+    "lint": {
+      "dependsOn": ["^lint"],
+      "inputs": [
+        "$TURBO_DEFAULT$",
+        ".eslintrc.*",
+        "eslint.config.*",
+        "tsconfig.json",
+        "package.json"
+      ]
+    },
+    "format": {
+      "cache": false,
+      "inputs": ["$TURBO_DEFAULT$", "prettier.config.*", ".prettierrc*", "package.json"]
+    },
+    "check-types": {
+      "dependsOn": ["^check-types"],
+      "inputs": ["$TURBO_DEFAULT$", "tsconfig.json", "package.json"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true
+    }
+  }
+}
